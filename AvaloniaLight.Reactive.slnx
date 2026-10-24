@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/properties/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/AvaloniaLight.Reactive/AvaloniaLight.Reactive.csproj" />
+    <Project Path="src/AvaloniaLight.Reactive.Generator/AvaloniaLight.Reactive.Generator.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AvaloniaLight.Reactive.Tests/AvaloniaLight.Reactive.Tests.csproj" />
+  </Folder>
+</Solution>

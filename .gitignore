@@ -1,0 +1,10 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+artifacts/
+
+# IDE files
+*.user
+*.suo
+.vs/
+.idea/

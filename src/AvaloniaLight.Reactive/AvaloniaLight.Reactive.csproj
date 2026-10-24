@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    AvaloniaLight.Reactive: a lightweight reactive core for Avalonia, an alternative to ReactiveUI, System.Reactive and DynamicData.
+    Notifying object base, subjects and operators, property observation, validation,
+    commands with CanExecute, a collection with batch operations and a UI thread helper.
+    The [Reactive] attribute generator lives next to it (AvaloniaLight.Reactive.Generator) and ships inside the package.
+  -->
+  <PropertyGroup>
+    <RootNamespace>AvaloniaLight.Reactive</RootNamespace>
+    <AssemblyName>AvaloniaLight.Reactive</AssemblyName>
+    <PackageId>AvaloniaLight.Reactive</PackageId>
+    <IsPackable>true</IsPackable>
+    <Description>A lightweight reactive core for Avalonia: notifying objects and the [Reactive] generator, subjects and operators, property observation, validation, commands and a collection with batch operations</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!--
+    XML documentation is only needed in the package, for IDE hints. The _IsPacking property is set by
+    the dotnet pack command. A regular build produces no file, so that a project reference does not copy
+    AvaloniaLight.Reactive.xml next to the dll into every application. The missing-summary warning is not needed.
+  -->
+  <PropertyGroup Condition="'$(_IsPacking)' == 'true'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+  </ItemGroup>
+
+  <!--
+    The [Reactive] generator is built together with the library. It is packed as an analyzer
+    (analyzers/dotnet/cs), so it is wired up automatically for package consumers.
+    PrivateAssets="all": the generator does not become a dependency of the package.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\AvaloniaLight.Reactive.Generator\AvaloniaLight.Reactive.Generator.csproj"
+                      ReferenceOutputAssembly="false"
+                      PrivateAssets="all" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);AddReactiveGeneratorToPackage</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="AddReactiveGeneratorToPackage">
+    <MSBuild Projects="..\AvaloniaLight.Reactive.Generator\AvaloniaLight.Reactive.Generator.csproj"
+             Targets="GetTargetPath"
+             Properties="Configuration=$(Configuration)">
+      <Output TaskParameter="TargetOutputs" ItemName="_ReactiveGeneratorAssembly" />
+    </MSBuild>
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="@(_ReactiveGeneratorAssembly)" PackagePath="analyzers/dotnet/cs" />
+    </ItemGroup>
+  </Target>
+
+  <!-- Package description for nuget.org and the IDE -->
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+  <!-- Internal members are visible to the library's own tests -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvaloniaLight.Reactive.Tests" />
+  </ItemGroup>
+
+</Project>

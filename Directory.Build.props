@@ -1,0 +1,44 @@
+<Project>
+
+  <!-- Common properties for all AvaloniaLight.Reactive projects. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <WarningsAsErrors>CA1416</WarningsAsErrors>
+    <!-- Restore warnings are not turned into errors even with TreatWarningsAsErrors:
+         a new vulnerability in a dependency (NU1901-NU1904) or an unreachable audit feed (NU1900)
+         would otherwise break the build for no good reason. -->
+    <WarningsNotAsErrors>$(WarningsNotAsErrors);NU1504;NU1510;NU1900;NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <!-- Package version and authorship. -->
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Authors>AvaloniaLight.Reactive contributors</Authors>
+    <Copyright>Copyright (c) AvaloniaLight.Reactive contributors</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>avalonia;reactive;mvvm;observable;source-generator</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/izaksuilov/avalonia-light-reactive</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/izaksuilov/avalonia-light-reactive</PackageProjectUrl>
+  </PropertyGroup>
+
+  <!-- Debugging support: portable PDBs in a separate symbol package, source link to GitHub. -->
+  <PropertyGroup>
+    <DebugType>portable</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <!-- Reproducible builds on CI. -->
+  <PropertyGroup Condition="'$(ContinuousIntegrationBuild)' == 'true'">
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+</Project>

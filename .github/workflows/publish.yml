@@ -1,0 +1,35 @@
+name: Publish
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for NuGet trusted publishing (OIDC)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Check that the tag matches the package version
+        run: |
+          version=$(sed -n 's:.*<Version>\(.*\)</Version>.*:\1:p' Directory.Build.props | head -n 1)
+          if [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match version ${version} in Directory.Build.props"
+            exit 1
+          fi
+      - run: dotnet restore AvaloniaLight.Reactive.slnx
+      - run: dotnet build AvaloniaLight.Reactive.slnx --configuration Release --no-restore -p:ContinuousIntegrationBuild=true
+      - run: dotnet test AvaloniaLight.Reactive.slnx --configuration Release --no-build
+      - run: dotnet pack src/AvaloniaLight.Reactive/AvaloniaLight.Reactive.csproj --configuration Release --output artifacts/nupkg -p:ContinuousIntegrationBuild=true
+      - name: Log in to nuget.org (trusted publishing)
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER }}
+      - name: Push to nuget.org
+        run: dotnet nuget push "artifacts/nupkg/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate

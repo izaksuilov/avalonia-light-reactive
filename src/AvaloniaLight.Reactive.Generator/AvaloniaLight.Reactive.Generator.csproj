@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Source generator for the [Reactive] attribute. Built for netstandard2.0 (a Roslyn analyzer requirement).
+    Not published as a separate package: it ships inside the AvaloniaLight.Reactive package, in analyzers/dotnet/cs.
+    Inside the repository it is referenced as an analyzer:
+    ProjectReference with OutputItemType="Analyzer" and ReferenceOutputAssembly="false".
+  -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IsPackable>false</IsPackable>
+
+    <!-- The analyzer is not published as part of an application. -->
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

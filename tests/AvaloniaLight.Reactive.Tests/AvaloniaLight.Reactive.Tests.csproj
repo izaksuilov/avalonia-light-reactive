@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Tests for AvaloniaLight.Reactive: the core (subjects, subscriptions, property observation, operators)
+    and the [Reactive] generator. A standalone project, run directly with `dotnet test`.
+    Package versions come from Directory.Packages.props.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <!-- Compiler used to run the generator in tests through GeneratorDriver -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AvaloniaLight.Reactive\AvaloniaLight.Reactive.csproj" />
+    <!--
+      The generator is referenced both as an analyzer and as a regular assembly. The analyzer form
+      checks [Reactive] properties in the live test code; the assembly form runs the generator
+      through GeneratorDriver and checks the text it produces.
+    -->
+    <ProjectReference Include="..\..\src\AvaloniaLight.Reactive.Generator\AvaloniaLight.Reactive.Generator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>
