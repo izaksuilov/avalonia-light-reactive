@@ -14,6 +14,8 @@ The package consists of two parts:
 - `LightReactive.Avalonia`: the library (net10.0, depends on the `Avalonia` package);
 - `LightReactive.Avalonia.Generator`: a source generator for the `[Reactive]` attribute (netstandard2.0). It is not published as a separate package; it ships inside the `LightReactive.Avalonia` package, in `analyzers/dotnet/cs`.
 
+This is an independent community project and is not affiliated with, endorsed by or sponsored by AvaloniaUI OÜ. "Avalonia" is a trademark of its owner.
+
 ---
 
 ## Contents
