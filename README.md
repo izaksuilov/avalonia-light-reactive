@@ -1,5 +1,10 @@
 # AvaloniaLight.Reactive
 
+[![NuGet](https://img.shields.io/nuget/v/AvaloniaLight.Reactive.svg)](https://www.nuget.org/packages/AvaloniaLight.Reactive)
+[![NuGet downloads](https://img.shields.io/nuget/dt/AvaloniaLight.Reactive.svg)](https://www.nuget.org/packages/AvaloniaLight.Reactive)
+[![CI](https://github.com/izaksuilov/avalonia-light-reactive/actions/workflows/ci.yml/badge.svg)](https://github.com/izaksuilov/avalonia-light-reactive/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A lightweight reactive core for Avalonia applications. It replaces ReactiveUI, System.Reactive and DynamicData for the part that view models actually need: notifying properties, property observation, subjects and operators, validation, commands, a collection with batch operations and a UI thread helper.
 
 ReactiveUI and System.Reactive allocate a lot of memory (ConditionalWeakTable, schedulers, a wrapper per subscription). When there are thousands of view models and they are cloned often, this puts noticeable pressure on the garbage collector. This library contains only what is really used, without the heavy infrastructure.
