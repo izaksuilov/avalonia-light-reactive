@@ -1,5 +1,5 @@
 <Project>
-  <!-- Central package versions for AvaloniaLight.Reactive. -->
+  <!-- Central package versions for LightReactive.Avalonia. -->
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>

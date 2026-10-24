@@ -1,8 +1,8 @@
-# AvaloniaLight.Reactive
+# LightReactive.Avalonia
 
-[![NuGet](https://img.shields.io/nuget/v/AvaloniaLight.Reactive.svg)](https://www.nuget.org/packages/AvaloniaLight.Reactive)
-[![NuGet downloads](https://img.shields.io/nuget/dt/AvaloniaLight.Reactive.svg)](https://www.nuget.org/packages/AvaloniaLight.Reactive)
-[![CI](https://github.com/izaksuilov/avalonia-light-reactive/actions/workflows/ci.yml/badge.svg)](https://github.com/izaksuilov/avalonia-light-reactive/actions/workflows/ci.yml)
+[![NuGet](https://img.shields.io/nuget/v/LightReactive.Avalonia.svg)](https://www.nuget.org/packages/LightReactive.Avalonia)
+[![NuGet downloads](https://img.shields.io/nuget/dt/LightReactive.Avalonia.svg)](https://www.nuget.org/packages/LightReactive.Avalonia)
+[![CI](https://github.com/izaksuilov/LightReactive.Avalonia/actions/workflows/ci.yml/badge.svg)](https://github.com/izaksuilov/LightReactive.Avalonia/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A lightweight reactive core for Avalonia applications. It replaces ReactiveUI, System.Reactive and DynamicData for the part that view models actually need: notifying properties, property observation, subjects and operators, validation, commands, a collection with batch operations and a UI thread helper.
@@ -11,8 +11,8 @@ ReactiveUI and System.Reactive allocate a lot of memory (ConditionalWeakTable, s
 
 The package consists of two parts:
 
-- `AvaloniaLight.Reactive`: the library (net10.0, depends on the `Avalonia` package);
-- `AvaloniaLight.Reactive.Generator`: a source generator for the `[Reactive]` attribute (netstandard2.0). It is not published as a separate package; it ships inside the `AvaloniaLight.Reactive` package, in `analyzers/dotnet/cs`.
+- `LightReactive.Avalonia`: the library (net10.0, depends on the `Avalonia` package);
+- `LightReactive.Avalonia.Generator`: a source generator for the `[Reactive]` attribute (netstandard2.0). It is not published as a separate package; it ships inside the `LightReactive.Avalonia` package, in `analyzers/dotnet/cs`.
 
 ---
 
@@ -20,12 +20,12 @@ The package consists of two parts:
 
 | Namespace | What is inside |
 |---|---|
-| `AvaloniaLight.Reactive` | `ReactiveObject` (view model base, `RaiseAndSetIfChanged`), the `[Reactive]` attribute, `Subject<T>`, `BehaviorSubject<T>`, `SubjectBase<T>`, `Unit`, `AnonymousObserver<T>`, `AnonymousObservable<T>`, `EventPattern<T>`, `Disposable`, `CompositeDisposable`, `SerialDisposable`, `SingleAssignmentDisposable`, `BooleanDisposable`, `DisposeWith`, `IScheduler`, `RxSchedulers` (`MainThreadScheduler`, `MainThreadInlineScheduler`), `WhenAnyValue` |
-| `AvaloniaLight.Reactive.Linq` | `Observable` (`Return`, `Empty`, `Never`, `Create`, `FromEventPattern`) and extension operators: `Select`, `Where`, `Do`, `Skip`, `Take`, `StartWith`, `DistinctUntilChanged`, `Merge`, `CombineLatest`, `Switch`, `Throttle`, `ObserveOn`, `Subscribe` |
-| `AvaloniaLight.Reactive.Validation` | `ReactiveValidationObject` (a base with `INotifyDataErrorInfo`), `IValidatableViewModel`, `ValidationContext`, `ValidationHelper`, the `ValidationRule` and `ClearValidationRules` extension methods |
-| `AvaloniaLight.Reactive.Commands` | `ICommand<TParam, TResult>`, `IAsyncCommand<TParam, TResult>`, `ICommandDisposable`, the `ReactiveCommand<TParam, TResult>` and `ReactiveCommandAsync<TParam, TResult>` implementations, the `CommandHelper` factory |
-| `AvaloniaLight.Reactive.Collections` | `ObservableCollectionExtended<T>` (`AddRange`, `RemoveMany`, `Load` with a single Reset notification), `AddRange` and `RemoveMany` extensions for `ICollection<T>` |
-| `AvaloniaLight.Reactive.Threading` | `DispatcherHelper`: UI thread check, `Invoke`, `InvokeAsync`, `BeginInvoke`, dispatcher timers |
+| `LightReactive.Avalonia` | `ReactiveObject` (view model base, `RaiseAndSetIfChanged`), the `[Reactive]` attribute, `Subject<T>`, `BehaviorSubject<T>`, `SubjectBase<T>`, `Unit`, `AnonymousObserver<T>`, `AnonymousObservable<T>`, `EventPattern<T>`, `Disposable`, `CompositeDisposable`, `SerialDisposable`, `SingleAssignmentDisposable`, `BooleanDisposable`, `DisposeWith`, `IScheduler`, `RxSchedulers` (`MainThreadScheduler`, `MainThreadInlineScheduler`), `WhenAnyValue` |
+| `LightReactive.Avalonia.Linq` | `Observable` (`Return`, `Empty`, `Never`, `Create`, `FromEventPattern`) and extension operators: `Select`, `Where`, `Do`, `Skip`, `Take`, `StartWith`, `DistinctUntilChanged`, `Merge`, `CombineLatest`, `Switch`, `Throttle`, `ObserveOn`, `Subscribe` |
+| `LightReactive.Avalonia.Validation` | `ReactiveValidationObject` (a base with `INotifyDataErrorInfo`), `IValidatableViewModel`, `ValidationContext`, `ValidationHelper`, the `ValidationRule` and `ClearValidationRules` extension methods |
+| `LightReactive.Avalonia.Commands` | `ICommand<TParam, TResult>`, `IAsyncCommand<TParam, TResult>`, `ICommandDisposable`, the `ReactiveCommand<TParam, TResult>` and `ReactiveCommandAsync<TParam, TResult>` implementations, the `CommandHelper` factory |
+| `LightReactive.Avalonia.Collections` | `ObservableCollectionExtended<T>` (`AddRange`, `RemoveMany`, `Load` with a single Reset notification), `AddRange` and `RemoveMany` extensions for `ICollection<T>` |
+| `LightReactive.Avalonia.Threading` | `DispatcherHelper`: UI thread check, `Invoke`, `InvokeAsync`, `BeginInvoke`, dispatcher timers |
 
 ---
 
@@ -42,7 +42,7 @@ The package consists of two parts:
 ### From NuGet
 
 ```xml
-<PackageReference Include="AvaloniaLight.Reactive" Version="1.0.0" />
+<PackageReference Include="LightReactive.Avalonia" Version="1.0.0" />
 ```
 
 The `[Reactive]` generator is wired up automatically: it is part of the package as an analyzer.
@@ -52,8 +52,8 @@ The `[Reactive]` generator is wired up automatically: it is part of the package 
 Analyzers are not passed on transitively through a project reference. So the library is referenced once, and the generator is referenced separately in every project that uses `[Reactive]`:
 
 ```xml
-<ProjectReference Include="..\AvaloniaLight.Reactive\src\AvaloniaLight.Reactive\AvaloniaLight.Reactive.csproj" />
-<ProjectReference Include="..\AvaloniaLight.Reactive\src\AvaloniaLight.Reactive.Generator\AvaloniaLight.Reactive.Generator.csproj"
+<ProjectReference Include="..\LightReactive.Avalonia\src\LightReactive.Avalonia\LightReactive.Avalonia.csproj" />
+<ProjectReference Include="..\LightReactive.Avalonia\src\LightReactive.Avalonia.Generator\LightReactive.Avalonia.Generator.csproj"
                   OutputItemType="Analyzer"
                   ReferenceOutputAssembly="false" />
 ```
@@ -65,7 +65,7 @@ The generator creates the `[Reactive]` attribute itself, as `internal`, in every
 ## Notifying properties
 
 ```csharp
-using AvaloniaLight.Reactive;
+using LightReactive.Avalonia;
 
 public partial class PersonViewModel : ReactiveObject
 {
@@ -94,8 +94,8 @@ A pitfall of hand-written setters: the check `if (field == value) return;` suppr
 ## Observing properties
 
 ```csharp
-using AvaloniaLight.Reactive;
-using AvaloniaLight.Reactive.Linq;
+using LightReactive.Avalonia;
+using LightReactive.Avalonia.Linq;
 
 this.WhenAnyValue(x => x.Name)
     .Throttle(TimeSpan.FromMilliseconds(300), RxSchedulers.MainThreadScheduler)
@@ -152,8 +152,8 @@ Known limitations, left in place deliberately:
 ## Commands
 
 ```csharp
-using AvaloniaLight.Reactive;
-using AvaloniaLight.Reactive.Commands;
+using LightReactive.Avalonia;
+using LightReactive.Avalonia.Commands;
 
 SaveCommand = CommandHelper.CreateFromTask(SaveAsync, this.WhenAnyValue(x => x.CanSave));
 DeleteCommand = CommandHelper.Create<Item>(Delete);
@@ -169,8 +169,8 @@ DeleteCommand = CommandHelper.Create<Item>(Delete);
 ## Validation
 
 ```csharp
-using AvaloniaLight.Reactive;
-using AvaloniaLight.Reactive.Validation;
+using LightReactive.Avalonia;
+using LightReactive.Avalonia.Validation;
 
 public partial class LoginViewModel : ReactiveValidationObject
 {
@@ -217,13 +217,13 @@ The validation context is lazy:
 ## Tests
 
 ```
-dotnet test AvaloniaLight.Reactive.slnx
+dotnet test LightReactive.Avalonia.slnx
 ```
 
-`tests/AvaloniaLight.Reactive.Tests`:
+`tests/LightReactive.Avalonia.Tests`:
 
 - `ReactiveCoreTests`: subjects, subscription containers, property observation, operator errors;
-- `OperatorTests`: operators and factories of `AvaloniaLight.Reactive.Linq`, completion according to the Rx contract, a manual scheduler for `Throttle` and `ObserveOn`;
+- `OperatorTests`: operators and factories of `LightReactive.Avalonia.Linq`, completion according to the Rx contract, a manual scheduler for `Throttle` and `ObserveOn`;
 - `ObservableCollectionExtendedTests`: collection batch operations and the Reset notification;
 - `SchedulerTests`: UI thread schedulers and `DispatcherHelper` timers; the Avalonia dispatcher runs on a separate test thread (`TestUiThread`);
 - `CommandTests`: command `CanExecute` and `CanExecuteChanged` on the UI thread;

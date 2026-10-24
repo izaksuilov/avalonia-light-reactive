@@ -22,10 +22,10 @@ jobs:
             echo "Tag ${GITHUB_REF_NAME} does not match version ${version} in Directory.Build.props"
             exit 1
           fi
-      - run: dotnet restore AvaloniaLight.Reactive.slnx
-      - run: dotnet build AvaloniaLight.Reactive.slnx --configuration Release --no-restore -p:ContinuousIntegrationBuild=true
-      - run: dotnet test AvaloniaLight.Reactive.slnx --configuration Release --no-build
-      - run: dotnet pack src/AvaloniaLight.Reactive/AvaloniaLight.Reactive.csproj --configuration Release --output artifacts/nupkg -p:ContinuousIntegrationBuild=true
+      - run: dotnet restore LightReactive.Avalonia.slnx
+      - run: dotnet build LightReactive.Avalonia.slnx --configuration Release --no-restore -p:ContinuousIntegrationBuild=true
+      - run: dotnet test LightReactive.Avalonia.slnx --configuration Release --no-build
+      - run: dotnet pack src/LightReactive.Avalonia/LightReactive.Avalonia.csproj --configuration Release --output artifacts/nupkg -p:ContinuousIntegrationBuild=true
       - name: Log in to nuget.org (trusted publishing)
         id: login
         uses: NuGet/login@v1

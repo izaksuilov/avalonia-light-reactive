@@ -1,6 +1,6 @@
 <Project>
 
-  <!-- Common properties for all AvaloniaLight.Reactive projects. -->
+  <!-- Common properties for all LightReactive.Avalonia projects. -->
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <LangVersion>latest</LangVersion>
@@ -18,13 +18,13 @@
   <!-- Package version and authorship. -->
   <PropertyGroup>
     <Version>1.0.0</Version>
-    <Authors>AvaloniaLight.Reactive contributors</Authors>
-    <Copyright>Copyright (c) AvaloniaLight.Reactive contributors</Copyright>
+    <Authors>LightReactive.Avalonia contributors</Authors>
+    <Copyright>Copyright (c) LightReactive.Avalonia contributors</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>avalonia;reactive;mvvm;observable;source-generator</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/izaksuilov/avalonia-light-reactive</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/izaksuilov/avalonia-light-reactive</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/izaksuilov/LightReactive.Avalonia</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/izaksuilov/LightReactive.Avalonia</PackageProjectUrl>
   </PropertyGroup>
 
   <!-- Debugging support: portable PDBs in a separate symbol package, source link to GitHub. -->
