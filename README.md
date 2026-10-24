@@ -1,8 +1,6 @@
 # LightReactive.Avalonia
 
 [![NuGet](https://img.shields.io/nuget/v/LightReactive.Avalonia.svg)](https://www.nuget.org/packages/LightReactive.Avalonia)
-[![NuGet downloads](https://img.shields.io/nuget/dt/LightReactive.Avalonia.svg)](https://www.nuget.org/packages/LightReactive.Avalonia)
-[![CI](https://github.com/izaksuilov/LightReactive.Avalonia/actions/workflows/ci.yml/badge.svg)](https://github.com/izaksuilov/LightReactive.Avalonia/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A lightweight reactive core for Avalonia applications. It replaces ReactiveUI, System.Reactive and DynamicData for the part that view models actually need: notifying properties, property observation, subjects and operators, validation, commands, a collection with batch operations and a UI thread helper.
