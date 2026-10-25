@@ -42,7 +42,7 @@ This is an independent community project and is not affiliated with, endorsed by
 ### From NuGet
 
 ```xml
-<PackageReference Include="LightReactive.Avalonia" Version="1.0.0" />
+<PackageReference Include="LightReactive.Avalonia" Version="1.0.1" />
 ```
 
 The `[Reactive]` generator is wired up automatically: it is part of the package as an analyzer.
